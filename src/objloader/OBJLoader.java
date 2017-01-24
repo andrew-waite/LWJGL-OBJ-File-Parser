@@ -9,11 +9,13 @@ import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
+import utilities.Vec3;
+
 public class OBJLoader
 {
-    List<Float> texCoords = new ArrayList<Float>();
-    List<Float> vertCoords = new ArrayList<Float>();
-    List<Float> normalCoords = new ArrayList<Float>();
+    List<Vec3> texCoords = new ArrayList<Vec3>();
+    List<Vec3> vertCoords = new ArrayList<Vec3>();
+    List<Vec3> normalCoords = new ArrayList<Vec3>();
     
     List<Integer> normalIndex = new ArrayList<Integer>();
     List<Integer> vertIndex = new ArrayList<Integer>();
@@ -21,7 +23,7 @@ public class OBJLoader
     
     private float tx, ty, tz; //Translate axis
     private float ra, rz, ry, rx; //Rotation angle, and axis
-    private float sx, sy, sz; //Scale axis and amount
+    private float sx = 1, sy = 1, sz = 1; //Scale axis and amount
     
     public OBJLoader(String fileName)
     {
@@ -33,7 +35,6 @@ public class OBJLoader
             } 
             catch (FileNotFoundException e)
             {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             
@@ -49,27 +50,21 @@ public class OBJLoader
                     {
                         String[] currentLineSplit = currentLine.split(" ");
                         
-                        normalCoords.add(Float.valueOf(currentLineSplit[1]));
-                        normalCoords.add(Float.valueOf(currentLineSplit[2]));
-                        normalCoords.add(Float.valueOf(currentLineSplit[3]));
+                        normalCoords.add(new Vec3(Float.valueOf(currentLineSplit[1]), Float.valueOf(currentLineSplit[2]), Float.valueOf(currentLineSplit[3])));
                     }
                     else
                     if(currentLine.charAt(0) == 'v' && currentLine.charAt(1) == 't')
                     {
                         String[] currentLineSplit = currentLine.split(" ");
                         
-                        texCoords.add(Float.valueOf(currentLineSplit[1]));
-                        texCoords.add(Float.valueOf(currentLineSplit[2]));
-                        texCoords.add(Float.valueOf(currentLineSplit[3]));
+                        texCoords.add(new Vec3(Float.valueOf(currentLineSplit[1]), Float.valueOf(currentLineSplit[2]), Float.valueOf(currentLineSplit[3])));
                     }
                     else
                     if(currentLine.charAt(0) == 'v')
                     {
                         String[] currentLineSplit = currentLine.split(" ");
-                            //System.out.println(currentLineSplit[2] + " " + currentLineSplit[3] + " " + currentLineSplit[4]);
-                        vertCoords.add(Float.valueOf(currentLineSplit[2]));
-                        vertCoords.add(Float.valueOf(currentLineSplit[3]));
-                        vertCoords.add(Float.valueOf(currentLineSplit[4]));
+                        
+                        vertCoords.add(new Vec3(Float.valueOf(currentLineSplit[2]), Float.valueOf(currentLineSplit[3]), Float.valueOf(currentLineSplit[4])));
                     }
                     else
                     if(currentLine.charAt(0) == 'f')
@@ -157,11 +152,11 @@ public class OBJLoader
         
         GL11.glBegin(GL11.GL_TRIANGLES);
         
-        for(int i = 0; i < vertIndex.size(); i += 3)
+        for(int i = 0; i < vertIndex.size(); i ++)
         {
-            GL11.glNormal3f(normalCoords.get(normalIndex.get(i) - 1), normalCoords.get(normalIndex.get(i + 1) - 1), normalCoords.get(normalIndex.get(i + 2) - 1));
-            GL11.glTexCoord3f(texCoords.get(texIndex.get(i) - 1), texCoords.get(texIndex.get(i + 1) - 1), texCoords.get(texIndex.get(i + 2) - 1));
-            GL11.glVertex3f(vertCoords.get(vertIndex.get(i) - 1), vertCoords.get(vertIndex.get(i + 1) - 1), vertCoords.get(vertIndex.get(i + 2) - 1));
+            GL11.glNormal3f(normalCoords.get(normalIndex.get(i) - 1).getX(), normalCoords.get(normalIndex.get(i) - 1).getY(), normalCoords.get(normalIndex.get(i) - 1).getZ());
+            GL11.glTexCoord3f(texCoords.get(texIndex.get(i) - 1).getX(), texCoords.get(texIndex.get(i) - 1).getY(), texCoords.get(texIndex.get(i) - 1).getZ());
+            GL11.glVertex3f(vertCoords.get(vertIndex.get(i) - 1).getX(), vertCoords.get(vertIndex.get(i) - 1).getY(), vertCoords.get(vertIndex.get(i) - 1).getZ());
         }
         
         GL11.glEnd();
