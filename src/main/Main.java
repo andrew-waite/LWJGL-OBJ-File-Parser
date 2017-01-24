@@ -72,7 +72,7 @@ public class Main
     public void draw()
     {   
        GL11.glColor3f(1.0f,0.0f,0.0f);
-       water.setColor(0, 0, 255).scale(1, 1, 1).renderObject();    
+       water.setColor(0, 0, 255).renderObject();    
     }
     
     public static void main(String[] args) throws LWJGLException

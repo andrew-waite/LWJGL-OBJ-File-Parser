@@ -120,7 +120,7 @@ public class OBJLoader
     
     public OBJLoader setColor(int r, int g, int b)
     {
-        GL11.glColor3f(r, g, b);
+        GL11.glColor3ub((byte)r, (byte)g, (byte)b);
         return this;
     }
     
@@ -152,7 +152,7 @@ public class OBJLoader
         
         GL11.glBegin(GL11.GL_TRIANGLES);
         
-        for(int i = 0; i < vertIndex.size(); i ++)
+        for(int i = 0; i < vertIndex.size(); i++)
         {
             GL11.glNormal3f(normalCoords.get(normalIndex.get(i) - 1).getX(), normalCoords.get(normalIndex.get(i) - 1).getY(), normalCoords.get(normalIndex.get(i) - 1).getZ());
             GL11.glTexCoord3f(texCoords.get(texIndex.get(i) - 1).getX(), texCoords.get(texIndex.get(i) - 1).getY(), texCoords.get(texIndex.get(i) - 1).getZ());
