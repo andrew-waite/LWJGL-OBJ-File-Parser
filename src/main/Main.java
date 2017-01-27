@@ -7,7 +7,9 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
+import org.lwjgl.util.vector.Vector3f;
 
+import camera.Camera;
 import objloader.OBJLoader;
 
 public class Main
@@ -16,6 +18,7 @@ public class Main
     private static final int HEIGHT = 800;
     
     private OBJLoader water;
+    private Camera camera = new Camera();
     
     public void pre_init()
     {
@@ -60,10 +63,11 @@ public class Main
              
             GL11.glMatrixMode(GL11.GL_MODELVIEW);
             GL11.glLoadIdentity();
-                          
-            GLU.gluLookAt(1, 400, 0, 0, 0, 0, 0, 1, 0);
-             
-            draw();
+                
+           updateKeyboard(); 
+           updateMouse();
+
+           draw();
             
             Display.update();
         }
@@ -72,10 +76,84 @@ public class Main
         System.exit(-1);
     }
     
+    public void updateMouse()
+    {
+        camera.setXOrigin(-1);
+        camera.computePos(camera.getDeltaMove());
+        
+        GLU.gluLookAt(camera.getPosition().x, 
+                      camera.getPosition().y,
+                      camera.getPosition().z, 
+                      camera.getPosition().x + camera.getRotation().x, 
+                      camera.getPosition().y + camera.getRotation().y, 
+                      camera.getPosition().z + camera.getRotation().z, 
+                      0.0f, 
+                      1.0f, 
+                      0.0f);
+        
+        camera.setMouseDirection((Mouse.getY() - HEIGHT / 2) * 0.002f);
+
+        // update deltaAngle
+        camera.setDeltaAngle((Mouse.getX() - camera.getXOrigin()) * 0.001f);
+
+        // update camera's direction        
+        Vector3f rotation = new Vector3f((float)Math.sin(camera.getAngle() + camera.getDeltaAngle()), 
+                                         (float) (0.1 + camera.getMouseDirection()), 
+                                         (float)-Math.cos(camera.getAngle() + camera.getDeltaAngle()));
+        
+        camera.setRotation(rotation);
+    }
+    
+    public void updateKeyboard()
+    {
+        while (Keyboard.next())
+        {
+            if (Keyboard.getEventKey() == Keyboard.KEY_A)
+            {
+                if (Keyboard.getEventKeyState())
+                {
+                    System.out.println("Pressed key");
+                    camera.crossProduct(true, 0.0f, 15.0f, 0.0f,
+                            camera.getRotation().x, camera.getRotation().y,
+                            camera.getRotation().z);
+                }
+            }
+            if (Keyboard.getEventKey() == Keyboard.KEY_D)
+            {
+                if (Keyboard.getEventKeyState())
+                {
+                    camera.crossProduct(false, 0.0f, 15.0f, 0.0f,
+                            camera.getRotation().x, camera.getRotation().y,
+                            camera.getRotation().z);
+                }
+            }
+
+            if (Keyboard.getEventKey() == Keyboard.KEY_W)
+            {
+                if (Keyboard.getEventKeyState())
+                {
+                    camera.setDeltaMove(0.02f);
+                } 
+                else
+                    camera.setDeltaMove(0.0f);
+            }
+
+            if (Keyboard.getEventKey() == Keyboard.KEY_S)
+            {
+                if (Keyboard.getEventKeyState())
+                {
+                    camera.setDeltaMove(-0.02f);
+                } 
+                else
+                    camera.setDeltaMove(0.0f);
+            }
+        }
+    }
+        
     public void draw()
     {   
        GL11.glColor3f(1.0f,0.0f,0.0f);
-       water.setColor(0, 0, 255).renderObject();    
+       water.setColor(0, 0, 255).renderObject();
     }
     
     public static void main(String[] args) throws LWJGLException
