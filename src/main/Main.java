@@ -2,6 +2,7 @@ package main;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
@@ -40,6 +41,8 @@ public class Main
             
             GL11.glEnable(GL11.GL_DEPTH_TEST);
             GL11.glDepthFunc(GL11.GL_NEAREST);
+            
+            Mouse.setGrabbed(true);
         } 
         catch (LWJGLException e) 
         {
