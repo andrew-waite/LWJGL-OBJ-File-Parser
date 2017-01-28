@@ -14,8 +14,8 @@ import objloader.OBJLoader;
 
 public class Main
 {
-    private static final int WIDTH = 1200;
-    private static final int HEIGHT = 800;
+    private static final int WIDTH = 2560;
+    private static final int HEIGHT = 1440;
     
     private OBJLoader water;
     private Camera camera = new Camera();
@@ -63,9 +63,9 @@ public class Main
              
             GL11.glMatrixMode(GL11.GL_MODELVIEW);
             GL11.glLoadIdentity();
-                
-           updateKeyboard(); 
+            
            updateMouse();
+           updateKeyboard(); 
 
            draw();
             
@@ -112,7 +112,6 @@ public class Main
             {
                 if (Keyboard.getEventKeyState())
                 {
-                    System.out.println("Pressed key");
                     camera.crossProduct(true, 0.0f, 15.0f, 0.0f,
                             camera.getRotation().x, camera.getRotation().y,
                             camera.getRotation().z);
@@ -132,7 +131,7 @@ public class Main
             {
                 if (Keyboard.getEventKeyState())
                 {
-                    camera.setDeltaMove(0.02f);
+                    camera.setDeltaMove(0.04f);
                 } 
                 else
                     camera.setDeltaMove(0.0f);
@@ -142,7 +141,7 @@ public class Main
             {
                 if (Keyboard.getEventKeyState())
                 {
-                    camera.setDeltaMove(-0.02f);
+                    camera.setDeltaMove(-0.04f);
                 } 
                 else
                     camera.setDeltaMove(0.0f);
