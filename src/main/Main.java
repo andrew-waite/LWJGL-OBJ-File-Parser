@@ -14,8 +14,8 @@ import objloader.OBJLoader;
 
 public class Main
 {
-    private static final int WIDTH = 2560;
-    private static final int HEIGHT = 1440;
+    private static final int WIDTH = 1920;
+    private static final int HEIGHT = 1080;
     
     private OBJLoader water;
     private Camera camera = new Camera();
@@ -78,30 +78,32 @@ public class Main
     
     public void updateMouse()
     {
-        camera.setXOrigin(-1);
+        camera.setXOrigin(Mouse.getDX());
         camera.computePos(camera.getDeltaMove());
-        
-        GLU.gluLookAt(camera.getPosition().x, 
-                      camera.getPosition().y,
-                      camera.getPosition().z, 
-                      camera.getPosition().x + camera.getRotation().x, 
-                      camera.getPosition().y + camera.getRotation().y, 
-                      camera.getPosition().z + camera.getRotation().z, 
-                      0.0f, 
-                      1.0f, 
-                      0.0f);
         
         camera.setMouseDirection((Mouse.getY() - HEIGHT / 2) * 0.002f);
 
         // update deltaAngle
-        camera.setDeltaAngle((Mouse.getX() - camera.getXOrigin()) * 0.001f);
+        camera.setDeltaAngle((Mouse.getX() - camera.getXOrigin()) * 0.002f);
 
         // update camera's direction        
-        Vector3f rotation = new Vector3f((float)Math.sin(camera.getAngle() + camera.getDeltaAngle()), 
+        Vector3f rotation = new Vector3f((float)Math.cos(camera.getDeltaAngle()), 
                                          (float) (0.1 + camera.getMouseDirection()), 
-                                         (float)-Math.cos(camera.getAngle() + camera.getDeltaAngle()));
+                                         (float)Math.sin((camera.getDeltaAngle())));
         
         camera.setRotation(rotation);
+        
+        GLU.gluLookAt(camera.getPosition().x, 
+                camera.getPosition().y,
+                camera.getPosition().z, 
+                camera.getPosition().x + camera.getRotation().x, 
+                camera.getPosition().y + camera.getRotation().y, 
+                camera.getPosition().z + camera.getRotation().z, 
+                0.0f, 
+                1.0f, 
+                0.0f);
+        
+       // Mouse.setCursorPosition(Mouse.getX() / 2, Mouse.getY() / 2);
     }
     
     public void updateKeyboard()
@@ -113,8 +115,8 @@ public class Main
                 if (Keyboard.getEventKeyState())
                 {
                     camera.crossProduct(true, 0.0f, 15.0f, 0.0f,
-                            camera.getRotation().x, camera.getRotation().y,
-                            camera.getRotation().z);
+                            camera.getRotation().getX(), camera.getRotation().getY(),
+                            camera.getRotation().getZ());
                 }
             }
             if (Keyboard.getEventKey() == Keyboard.KEY_D)
@@ -122,8 +124,8 @@ public class Main
                 if (Keyboard.getEventKeyState())
                 {
                     camera.crossProduct(false, 0.0f, 15.0f, 0.0f,
-                            camera.getRotation().x, camera.getRotation().y,
-                            camera.getRotation().z);
+                            camera.getRotation().getX(), camera.getRotation().getY(),
+                            camera.getRotation().getZ());
                 }
             }
 
