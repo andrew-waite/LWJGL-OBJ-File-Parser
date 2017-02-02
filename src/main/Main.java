@@ -92,18 +92,20 @@ public class Main
         
         camera.setRotation(rotation);
         
-        GLU.gluLookAt(camera.getPosition().x, 
-                      camera.getPosition().y,
-                      camera.getPosition().z, 
-                      camera.getPosition().x + camera.getRotation().x, 
-                      camera.getPosition().y + camera.getRotation().y, 
-                      camera.getPosition().z + camera.getRotation().z, 
+        GLU.gluLookAt(camera.getPosition().getX(), 
+                      camera.getPosition().getY(),
+                      camera.getPosition().getZ(), 
+                      camera.getPosition().getX() + camera.getRotation().getX(), 
+                      camera.getPosition().getY() + camera.getRotation().getY(), 
+                      camera.getPosition().getZ() + camera.getRotation().getZ(), 
                       0.0f, 
                       1.0f, 
                       0.0f);
         
         
        // Mouse.setCursorPosition(Mouse.getX() / 2, Mouse.getY() / 2);
+        
+        camera.setAngle((float) (camera.getAngle() + camera.getDeltaAngle()));
     }
     
     public void updateKeyboard()

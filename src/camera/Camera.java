@@ -24,9 +24,9 @@ public class Camera
     public void computePos(double d) 
     {
 
-        position.x += d * rotation.x * 1.0f;
-        position.z += d * rotation.z * 1.0f;
-        position.y += d * rotation.y * 1.0f;
+        position.x += d * rotation.getX() * 1.0f;
+        position.z += d * rotation.getZ() * 1.0f;
+        position.y += d * rotation.getY() * 1.0f;
     }
 
     public void crossProduct(boolean positive, float ax, float ay, float az, float bx, float by, float bz)
@@ -42,9 +42,18 @@ public class Camera
         cy *= strafeSpeed;
         cz *= strafeSpeed;
         
-        position.x += positive ? cx : -cx;
-        position.y += positive ? cy : -cy;
-        position.z += positive ? cz : -cz;
+        if(positive)
+        {
+            position.x += cx;
+            position.y += cy;
+            position.z += cz;
+        }
+        else
+        {
+            position.x -= cx;
+            position.y -= cy;
+            position.z -= cz;
+        }
     } 
     
     public double getAngle()
