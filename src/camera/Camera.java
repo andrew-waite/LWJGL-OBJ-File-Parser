@@ -90,6 +90,11 @@ public class Camera
     {
         return this.xOrigin;
     }
+    
+    public double getSpeed()
+    {
+        return this.speed;
+    }
 
     public void setAngle(float angle)
     {

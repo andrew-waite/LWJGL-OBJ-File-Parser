@@ -78,7 +78,7 @@ public class Main
     
     public void updateMouse()
     {
-        camera.setXOrigin(Mouse.getDX());
+        camera.setXOrigin(Mouse.getDY());
         
         camera.setMouseDirection((Mouse.getY() - HEIGHT / 2) * 0.002f);
 
@@ -86,9 +86,9 @@ public class Main
         camera.setDeltaAngle((Mouse.getX() - camera.getXOrigin()) * 0.002f);
 
         // update camera's direction        
-        Vector3f rotation = new Vector3f((float)Math.cos(camera.getDeltaAngle()), 
+        Vector3f rotation = new Vector3f((float)Math.sin(camera.getDeltaAngle()), 
                                          (float) (0.1 + camera.getMouseDirection()), 
-                                         (float)Math.sin((camera.getDeltaAngle())));
+                                         -(float)Math.cos(camera.getDeltaAngle()));
         
         camera.setRotation(rotation);
         
@@ -103,7 +103,7 @@ public class Main
                       0.0f);
         
         
-       // Mouse.setCursorPosition(Mouse.getX() / 2, Mouse.getY() / 2);
+        //Mouse.setCursorPosition(Mouse.getDX() / 2, Mouse.getDY() / 2);
         
         camera.setAngle((float) (camera.getAngle() + camera.getDeltaAngle()));
     }
@@ -135,10 +135,14 @@ public class Main
             {
                 if (Keyboard.getEventKeyState())
                 {
+                   // System.out.println("holding down");
                     camera.setDeltaMove(0.04f);
                 } 
                 else
+                {
+                    //System.out.println("released");
                     camera.setDeltaMove(0.0f);
+                }
             }
 
             if (Keyboard.getEventKey() == Keyboard.KEY_S)
