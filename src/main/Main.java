@@ -62,10 +62,11 @@ public class Main
             
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
              
+            //GL11.glLoadIdentity();
             GL11.glLoadIdentity();
-            
            updateMouse();
            updateKeyboard(); 
+           
 
            draw();
             
@@ -78,6 +79,7 @@ public class Main
     
     public void updateMouse()
     {
+        
         camera.setXOrigin(Mouse.getDY());
         
         camera.setMouseDirection((Mouse.getY() - HEIGHT / 2) * 0.002f);
@@ -86,9 +88,9 @@ public class Main
         camera.setDeltaAngle((Mouse.getX() - camera.getXOrigin()) * 0.002f);
 
         // update camera's direction        
-        Vector3f rotation = new Vector3f((float)Math.sin(camera.getDeltaAngle()), 
+        Vector3f rotation = new Vector3f((float)Math.sin(camera.getAngle() + camera.getDeltaAngle()), 
                                          (float) (0.1 + camera.getMouseDirection()), 
-                                         -(float)Math.cos(camera.getDeltaAngle()));
+                                         -(float)Math.cos(camera.getAngle() + camera.getDeltaAngle()));
         
         camera.setRotation(rotation);
         
@@ -104,8 +106,8 @@ public class Main
         
         
         //Mouse.setCursorPosition(Mouse.getDX() / 2, Mouse.getDY() / 2);
+        camera.setAngle((float) (camera.getDeltaAngle()));
         
-        camera.setAngle((float) (camera.getAngle() + camera.getDeltaAngle()));
     }
     
     public void updateKeyboard()

@@ -4,7 +4,7 @@ import org.lwjgl.util.vector.Vector3f;
 
 public class Camera
 {
-    private double speed = 0.5f;
+    private double speed = 1.0f;
     private double angle = 0.0f;
     
     private double deltaAngle = 0.0f;
