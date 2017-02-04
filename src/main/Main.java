@@ -82,7 +82,7 @@ public class Main
         
         camera.setXOrigin(Mouse.getDY());
         
-        camera.setMouseDirection((Mouse.getY() - HEIGHT / 2) * 0.002f);
+        camera.setMouseDirection((Mouse.getY() - HEIGHT / 2) * 0.004f);
 
         // update deltaAngle
         camera.setDeltaAngle((Mouse.getX() - camera.getXOrigin()) * 0.002f);
