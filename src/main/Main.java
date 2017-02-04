@@ -24,7 +24,7 @@ public class Main
     public void pre_init()
     {
         water = new OBJLoader("./OBJ_FILES/water.obj");
-       // boat = new OBJLoader("./OBJ_FILES/boat.obj");
+        boat = new OBJLoader("./OBJ_FILES/boat.obj");
     }
     
     public void init()
@@ -64,9 +64,10 @@ public class Main
             
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
              
-            //GL11.glLoadIdentity();
             GL11.glLoadIdentity();
+            
             updateMouse();
+            
             updateKeyboard(); 
 
             draw();
@@ -105,8 +106,6 @@ public class Main
                       1.0f, 
                       0.0f);
         
-        
-        //Mouse.setCursorPosition(Mouse.getDX() / 2, Mouse.getDY() / 2);
         camera.setAngle((float) (camera.getDeltaAngle()));
         
     }
@@ -163,7 +162,7 @@ public class Main
     public void draw()
     {   
        water.setColor(0, 0, 255).renderObject();
-       //boat.setColor(0, 0, 0).renderObject();
+       boat.translate(0, 100, 0).setColor(255, 0, 0).renderObject();
     }
     
     public static void main(String[] args) throws LWJGLException
