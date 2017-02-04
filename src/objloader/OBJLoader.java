@@ -21,8 +21,8 @@ public class OBJLoader
     List<Integer> vertIndex = new ArrayList<Integer>();
     List<Integer> texIndex = new ArrayList<Integer>();
     
-    private float tx, ty, tz; //Translate axis
-    private float ra, rz, ry, rx; //Rotation angle, and axis
+    private float tx = 0, ty = 0, tz = 0; //Translate axis
+    private float ra = 0, rz = 0, ry = 0, rx = 0; //Rotation angle, and axis
     private float sx = 1, sy = 1, sz = 1; //Scale axis and amount
     
     public OBJLoader(String fileName)
@@ -70,13 +70,13 @@ public class OBJLoader
                     if(currentLine.charAt(0) == 'f')
                     {
                         String[] currentLineSplit = currentLine.split("[/ ]");
-                        texIndex.add(Integer.valueOf(currentLineSplit[1]));
-                        texIndex.add(Integer.valueOf(currentLineSplit[4]));
-                        texIndex.add(Integer.valueOf(currentLineSplit[7]));
+                        texIndex.add(Integer.valueOf(currentLineSplit[2]));
+                        texIndex.add(Integer.valueOf(currentLineSplit[5]));
+                        texIndex.add(Integer.valueOf(currentLineSplit[8]));
                         
-                        vertIndex.add(Integer.valueOf(currentLineSplit[2]));
-                        vertIndex.add(Integer.valueOf(currentLineSplit[5]));
-                        vertIndex.add(Integer.valueOf(currentLineSplit[8]));
+                        vertIndex.add(Integer.valueOf(currentLineSplit[1]));
+                        vertIndex.add(Integer.valueOf(currentLineSplit[4]));
+                        vertIndex.add(Integer.valueOf(currentLineSplit[7]));
                         
                         normalIndex.add(Integer.valueOf(currentLineSplit[3]));
                         normalIndex.add(Integer.valueOf(currentLineSplit[6]));

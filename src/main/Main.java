@@ -18,11 +18,13 @@ public class Main
     private static final int HEIGHT = 1080;
     
     private OBJLoader water;
+    private OBJLoader boat;
     private Camera camera = new Camera();
     
     public void pre_init()
     {
         water = new OBJLoader("./OBJ_FILES/water.obj");
+       // boat = new OBJLoader("./OBJ_FILES/boat.obj");
     }
     
     public void init()
@@ -64,11 +66,10 @@ public class Main
              
             //GL11.glLoadIdentity();
             GL11.glLoadIdentity();
-           updateMouse();
-           updateKeyboard(); 
-           
+            updateMouse();
+            updateKeyboard(); 
 
-           draw();
+            draw();
             
             Display.update();
         }
@@ -161,8 +162,8 @@ public class Main
         
     public void draw()
     {   
-       GL11.glColor3f(1.0f,0.0f,0.0f);
        water.setColor(0, 0, 255).renderObject();
+       //boat.setColor(0, 0, 0).renderObject();
     }
     
     public static void main(String[] args) throws LWJGLException
