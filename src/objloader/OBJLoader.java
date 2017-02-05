@@ -82,6 +82,11 @@ public class OBJLoader
                         normalIndex.add(Integer.valueOf(currentLineSplit[6]));
                         normalIndex.add(Integer.valueOf(currentLineSplit[9]));
                     }
+                    else
+                    if(currentLine.charAt(0) == 'm')
+                    {
+                        //TODO: Add mtl reader
+                    }
                     
                     else continue;
                 }
