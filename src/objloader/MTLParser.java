@@ -8,8 +8,14 @@ public class MTLParser
     private Vec3 diffuse;
     private Vec3 specular;
     
-    public MTLParser()
+    private String filePathAbsolute;
+    
+    public MTLParser(String fileName)
     {
-        
+        this.filePathAbsolute = "./OBJ_FILES/" + fileName;
     }
+    
+    
+    
+    
 }
