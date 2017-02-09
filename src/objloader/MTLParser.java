@@ -15,6 +15,10 @@ public class MTLParser
         this.filePathAbsolute = "./OBJ_FILES/" + fileName;
     }
     
+    public Vec3 getAmbient()
+    {
+        return this.ambient;
+    }
     
     
     
