@@ -10,6 +10,11 @@ public class MTLParser
     
     private String filePathAbsolute;
     
+    /**
+     * Constructor for reading in MTL files
+     * @param fileName
+     */
+    
     public MTLParser(String fileName)
     {
         this.filePathAbsolute = "./OBJ_FILES/" + fileName;
