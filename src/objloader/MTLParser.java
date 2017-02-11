@@ -7,10 +7,6 @@ import utilities.Vec3;
 
 public class MTLParser
 {
-    private Vec3 ambient;
-    private Vec3 diffuse;
-    private Vec3 specular;
-    
     private String filePathRelative;
     
     private List<MTLParserData> materialData = new ArrayList<MTLParserData>();
