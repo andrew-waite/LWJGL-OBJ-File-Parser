@@ -8,7 +8,7 @@ public class MTLParser
     private Vec3 diffuse;
     private Vec3 specular;
     
-    private String filePathAbsolute;
+    private String filePathRelative;
     
     /**
      * Constructor for reading in MTL files
@@ -17,7 +17,7 @@ public class MTLParser
     
     public MTLParser(String fileName)
     {
-        this.filePathAbsolute = "./OBJ_FILES/" + fileName;
+        this.filePathRelative = "./OBJ_FILES/" + fileName;
     }
     
     public Vec3 getAmbient()
