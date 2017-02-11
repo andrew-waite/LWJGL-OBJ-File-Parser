@@ -1,5 +1,8 @@
 package objloader;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import utilities.Vec3;
 
 public class MTLParser
@@ -10,6 +13,8 @@ public class MTLParser
     
     private String filePathRelative;
     
+    private List<MTLParserData> materailData = new ArrayList<MTLParserData>();
+    
     /**
      * Constructor for reading in MTL files
      * @param fileName
@@ -18,13 +23,12 @@ public class MTLParser
     public MTLParser(String fileName)
     {
         this.filePathRelative = "./OBJ_FILES/" + fileName;
+        this.readFile();
     }
     
-    public Vec3 getAmbient()
+    private void readFile()
     {
-        return this.ambient;
+        
     }
-    
-    
     
 }
