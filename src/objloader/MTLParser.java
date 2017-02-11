@@ -3,8 +3,6 @@ package objloader;
 import java.util.ArrayList;
 import java.util.List;
 
-import utilities.Vec3;
-
 public class MTLParser
 {
     private String filePathRelative;
