@@ -8,8 +8,11 @@ public class MTLParserData
     private Vec3 diffuse;
     private Vec3 specular;
     
-    public MTLParserData(Vec3 ambient, Vec3 diffuse, Vec3 specular)
+    private int id;
+    
+    public MTLParserData(int id, Vec3 ambient, Vec3 diffuse, Vec3 specular)
     {
+        this.id = id;
         this.ambient = ambient;
         this.diffuse = diffuse;
         this.specular = specular;
