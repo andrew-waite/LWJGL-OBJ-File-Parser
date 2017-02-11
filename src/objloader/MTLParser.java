@@ -13,7 +13,7 @@ public class MTLParser
     
     private String filePathRelative;
     
-    private List<MTLParserData> materailData = new ArrayList<MTLParserData>();
+    private List<MTLParserData> materialData = new ArrayList<MTLParserData>();
     
     /**
      * Constructor for reading in MTL files
