@@ -45,6 +45,7 @@ public class MTLParser
         
         try
         {
+            //TODO: Overhaul algorithm, change MTLParserData class as well to accept single inputs
             while((currentLine = fileReader.readLine()) != null)
             {
                 int textureID;
