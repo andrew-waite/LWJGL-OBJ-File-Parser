@@ -108,6 +108,8 @@ public class OBJLoader
             {
                 e.printStackTrace();
             }
+            
+            //TODO: Parse mtl data into lighting here
     }
     
     public OBJLoader rotate(float rotationAngle, float x, float y, float z)
