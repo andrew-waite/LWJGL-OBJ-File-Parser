@@ -85,7 +85,7 @@ public class OBJLoader
                     else
                     if(currentLine.charAt(0) == 'm')
                     {
-                        //TODO: Add mtl reader
+                        //TODO: Add mtl reader, call constructor etc
                     }
                     
                     else continue;
