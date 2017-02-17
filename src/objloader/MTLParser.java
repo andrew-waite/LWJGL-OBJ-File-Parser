@@ -82,6 +82,8 @@ public class MTLParser
                     
                     textureID = Integer.valueOf(currentLineSplit[1]);
                 }
+				
+				//TODO get texture filename
                 else continue;
             }
         } 
