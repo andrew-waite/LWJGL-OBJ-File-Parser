@@ -81,7 +81,7 @@ public class Main
     
     public void updateMouse()
     {
-        
+        TODO: FIX camera only rotating once in a single direction
         camera.setXOrigin(Mouse.getDY());
         
         camera.setMouseDirection((Mouse.getY() - HEIGHT / 2) * 0.004f);
