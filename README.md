@@ -1,1 +1,1 @@
-This is just a simple project to parse obj files from 3ds max, blender, and mayer into a working opengl project.
+This is just a simple project to parse obj and mtl files into working opengl code.
