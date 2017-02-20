@@ -32,4 +32,19 @@ public class MTLParserData
     {
         return this.specular;
     }
+	
+	public void setAmbient(Vec3 ambient)
+	{
+		this.ambient = ambient;
+	}
+	
+	public void setDiffuse(Vec3 diffuse)
+	{
+		this.diffuse = diffuse;
+	}
+	
+	public void setSpecular(Vec3 specular)
+	{
+		this.specular = specular;
+	}
 }
