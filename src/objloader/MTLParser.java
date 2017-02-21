@@ -81,6 +81,8 @@ public class MTLParser
                     String[] currentLineSplit = currentLine.split(" ");
                     
                     textureID = Integer.valueOf(currentLineSplit[1]);
+					
+					//End current file here and build
                 }
 				
 				//TODO get texture filename
